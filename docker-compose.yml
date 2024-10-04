@@ -1,0 +1,35 @@
+services:
+  netsite:
+    image: jvilaplana/netsite
+    build:
+      context: NetSite
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_CONNECTION_STRING=mongodb://mongo:mongo@mongo:27017
+      - MONGO_DATABASE_NAME=netsite
+    networks:
+      - netsite-network
+
+  # MongoDB service
+  mongo:
+    image: mongo:8.0
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=mongo
+    volumes:
+      - netsite-data:/data/db
+    networks:
+      - netsite-network
+
+volumes:
+  netsite-data:
+
+networks:
+  netsite-network:
+
