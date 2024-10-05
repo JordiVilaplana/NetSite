@@ -1,6 +1,11 @@
+version: "3.9"
+
+name: NetSite
+
 services:
   netsite:
     image: jvilaplana/netsite
+    container_name: app
     build:
       context: NetSite
       dockerfile: Dockerfile
@@ -10,14 +15,15 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGO_CONNECTION_STRING=mongodb://mongo:mongo@mongo:27017
-      - MONGO_DATABASE_NAME=netsite
+      - MongoDb__ConnectionString=mongodb://mongo:mongo@mongo:27017
+      - MongoDb__DatabaseName=netsite
     networks:
       - netsite-network
 
   # MongoDB service
   mongo:
     image: mongo:8.0
+    container_name: db
     restart: always
     environment:
       - MONGO_INITDB_ROOT_USERNAME=mongo
