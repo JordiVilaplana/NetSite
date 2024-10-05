@@ -21,7 +21,9 @@ builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
     var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
     return new MongoClient(settings.ConnectionString);
 });
+
 builder.Services.AddSingleton<MongoDbService>();
+builder.Services.AddScoped<PagesService>();
 
 var app = builder.Build();
 
