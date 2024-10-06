@@ -33,7 +33,9 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var dbService = services.GetRequiredService<MongoDbService>();
 
-    //await dbService.FlushDatabaseAsync();
+    // Uncomment to reset the database
+    // await dbService.FlushDatabaseAsync();
+
     await dbService.SeedDatabaseAsync();
 }
 
@@ -41,7 +43,8 @@ using (var scope = app.Services.CreateScope())
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    // The default HSTS value is 30 days.
+    // You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

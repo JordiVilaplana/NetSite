@@ -46,7 +46,8 @@ public class MongoDbService
             {
                 new StaticContent()
                 {
-                    Path = "/",
+                    Path = "/index",
+                    Name = "Home",
                     Title = "Home",
                     Content = "Hello, World!",
                     IsTopLevel = true,

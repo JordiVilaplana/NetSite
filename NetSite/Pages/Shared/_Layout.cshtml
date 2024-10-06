@@ -26,7 +26,7 @@
                         @foreach (StaticContent staticPage in await PagesService.ListTopLevelAsync())
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="@staticPage.Path">@staticPage.Title</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="@staticPage.Path">@staticPage.Name</a>
                             </li>
                         }
                     </ul>

@@ -10,10 +10,10 @@ public class ContentRedirect
 
     public ContentRedirect(
         RequestDelegate next,
-        StaticContentService pagesService)
+        StaticContentService staticContentService)
     {
         _next = next;
-        _pagesService = pagesService;
+        _pagesService = staticContentService;
     }
 
     public async Task InvokeAsync(HttpContext context)
@@ -41,6 +41,12 @@ public class ContentRedirect
         {
             await _next(context);
             return;
+        }
+
+        // "/index" hack
+        if (path.Equals("/"))
+        {
+            path = "/index";
         }
 
         // Redirect all other requests to "/ContentPage"
