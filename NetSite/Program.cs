@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using NetSite.Middleware;
 using NetSite.Services;
 using NetSite.Settings;
 
@@ -27,6 +28,15 @@ builder.Services.AddScoped<StaticContentService>();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbService = services.GetRequiredService<MongoDbService>();
+
+    //await dbService.FlushDatabaseAsync();
+    await dbService.SeedDatabaseAsync();
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -37,6 +47,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseMiddleware<ContentRedirect>();
 
 app.UseRouting();
 
