@@ -14,6 +14,7 @@ builder.Configuration
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
 
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDb"));
 
@@ -54,9 +55,12 @@ app.UseStaticFiles();
 app.UseMiddleware<ContentRedirect>();
 
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapControllerRoute(
+    name: "admin",
+    pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
+    );
 
 app.Run();
