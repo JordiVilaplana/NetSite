@@ -23,7 +23,7 @@ builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
 });
 
 builder.Services.AddSingleton<MongoDbService>();
-builder.Services.AddScoped<PagesService>();
+builder.Services.AddScoped<StaticContentService>();
 
 var app = builder.Build();
 
