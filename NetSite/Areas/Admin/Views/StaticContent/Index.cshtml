@@ -1,0 +1,16 @@
+﻿@using NetSite.Models
+@model IEnumerable<StaticContent>
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<a href="/Admin/StaticContent/Create">Create New Static Page</a>
+<ul>
+    @foreach (var content in Model)
+    {
+        <li>@content.Title -
+            <a href="/Admin/StaticContent/Edit/@content.Id">Edit</a> -
+            <a href="/Admin/StaticContent/Delete/@content.Id">Delete</a>
+        </li>
+    }
+</ul>
