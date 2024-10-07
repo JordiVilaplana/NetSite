@@ -43,12 +43,6 @@ public class ContentRedirect
             return;
         }
 
-        // "/index" hack
-        if (path.Equals("/"))
-        {
-            path = "/index";
-        }
-
         // Redirect all other requests to "/ContentPage"
         context.Request.Path = "/ContentPage";
         var content = await _pagesService.GetByPathAsync(path);

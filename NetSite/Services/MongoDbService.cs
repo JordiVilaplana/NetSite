@@ -51,7 +51,7 @@ public class MongoDbService
             {
                 new StaticContent()
                 {
-                    Path = "/index",
+                    Path = "/",
                     Title = "Home",
                     Content = "Hello, World!",
                 }
@@ -67,7 +67,7 @@ public class MongoDbService
             {
                 new NavItem()
                 {
-                    Path = "/index",
+                    Path = "/",
                     Name = "Home",
                     Tags = ["top"],
                     Order = 0
