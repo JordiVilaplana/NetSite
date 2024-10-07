@@ -15,13 +15,19 @@ public class NavItemsService
     public async Task<IEnumerable<string>> ListTagsAsync()
     {
         var tags = await _navItemsCollection.Find(_ => true).ToListAsync();
-        return tags.SelectMany(n => n.Tags).Order();
+        return tags.SelectMany(n => n.Tags.Select(t => t.Name)).Order();
     }
 
     public async Task<IEnumerable<NavItem>> ListAsync(string tag)
     {
-        var items = await _navItemsCollection.Find(n => n.Tags.Contains(tag)).ToListAsync();
-        return items.OrderBy(n => n.Order);
+        var items = await _navItemsCollection
+            .Find(n => n.Tags
+                        .Select(t => t.Name)
+                        .Contains(tag)).ToListAsync();
+        return items.OrderBy(n => n.Tags
+                                   .Where(t1 => t1.Name == tag)
+                                   .Select(t2 => t2.Order)
+                                   .FirstOrDefault());
     }
 
     public async Task<NavItem> GetAsync(string id)

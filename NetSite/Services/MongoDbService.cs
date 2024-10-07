@@ -49,7 +49,7 @@ public class MongoDbService
         {
             var initialStaticContent = new List<StaticContent>
             {
-                new StaticContent()
+                new StaticContent
                 {
                     Path = "/",
                     Title = "Home",
@@ -65,19 +65,29 @@ public class MongoDbService
         {
             var initialNavItems = new List<NavItem>
             {
-                new NavItem()
+                new NavItem
                 {
                     Path = "/",
                     Name = "Home",
-                    Tags = ["top"],
-                    Order = 0
+                    Tags = [
+                        new NavTag
+                        {
+                            Name = "top",
+                            Order = 0
+                        }
+                    ]
                 },
-                new NavItem()
+                new NavItem
                 {
                     Path = "/admin",
                     Name = "Admin",
-                    Tags = ["top"],
-                    Order = 1
+                    Tags = [
+                        new NavTag
+                        {
+                            Name = "top",
+                            Order = 1
+                        }
+                    ]
                 }
             };
             await niCollection.InsertManyAsync(initialNavItems);
