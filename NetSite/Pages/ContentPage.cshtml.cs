@@ -13,6 +13,6 @@ public class ContentPageModel : PageModel
     {
         PageContent = HttpContext.Items[ContentKey] as StaticContent;
 
-        ViewData["Title"] = PageContent?.Title ?? "Content not found";
+        ViewData["Title"] = PageContent!.Title;
     }
 }
