@@ -24,6 +24,11 @@ public class MongoDbService
         return _database.GetCollection<StaticContent>("StaticContent");
     }
 
+    public IMongoCollection<NavItem> GetNavItemsCollection()
+    {
+        return _database.GetCollection<NavItem>("NavItems");
+    }
+
     public async Task FlushDatabaseAsync()
     {
         var collections = await _database.ListCollectionNamesAsync();
@@ -47,13 +52,28 @@ public class MongoDbService
                 new StaticContent()
                 {
                     Path = "/index",
-                    Name = "Home",
                     Title = "Home",
                     Content = "Hello, World!",
-                    IsTopLevel = true,
                 }
             };
             await scCollection.InsertManyAsync(initialStaticContent);
+        }
+
+        var niCollection = GetNavItemsCollection();
+        var niCount = await niCollection.CountDocumentsAsync(_ => true);
+        if (niCount == 0)
+        {
+            var initialNavItems = new List<NavItem>
+            {
+                new NavItem()
+                {
+                    Path = "/index",
+                    Name = "Home",
+                    Tags = ["top"],
+                    Order = 0
+                }
+            };
+            await niCollection.InsertManyAsync(initialNavItems);
         }
     }
 }

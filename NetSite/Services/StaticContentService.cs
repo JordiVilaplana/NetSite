@@ -17,11 +17,6 @@ public class StaticContentService
         return await _pagesCollection.Find(_ => true).ToListAsync();
     }
 
-    public async Task<IEnumerable<StaticContent>> ListTopLevelAsync()
-    {
-        return await _pagesCollection.Find(c => c.IsTopLevel).ToListAsync();
-    }
-
     public async Task<StaticContent> GetAsync(string id)
     {
         return await _pagesCollection.Find(p => p.Id == id).FirstOrDefaultAsync();

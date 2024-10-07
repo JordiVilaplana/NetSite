@@ -26,6 +26,7 @@ builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
 
 builder.Services.AddSingleton<MongoDbService>();
 builder.Services.AddScoped<StaticContentService>();
+builder.Services.AddScoped<NavItemsService>();
 
 var app = builder.Build();
 

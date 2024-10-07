@@ -1,6 +1,6 @@
 ﻿@using NetSite.Models
 @using NetSite.Services
-@inject StaticContentService PagesService
+@inject NavItemsService NavItemsService
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,10 +23,10 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        @foreach (StaticContent staticPage in await PagesService.ListTopLevelAsync())
+                        @foreach (NavItem navItem in await NavItemsService.ListAsync("top"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="@staticPage.Path">@staticPage.Name</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="@navItem.Path">@navItem.Name</a>
                             </li>
                         }
                     </ul>
