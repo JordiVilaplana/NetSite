@@ -54,7 +54,7 @@ public class StaticContentController : Controller
     }
 
     // POST: StaticContentController/Edit/5
-    [HttpPut]
+    [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> Edit(string id, StaticContent data)
     {
@@ -79,7 +79,7 @@ public class StaticContentController : Controller
     }
 
     // POST: StaticContentController/Delete/5
-    [HttpDelete]
+    [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> Delete(string id, StaticContent data)
     {
