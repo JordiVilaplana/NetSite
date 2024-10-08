@@ -1,0 +1,30 @@
+﻿@using NetSite.Models
+@model NavItem
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Edit link</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" asp-for="Name" />
+    </div>
+    <div class="form-group">
+        <label for="Path">Path</label>
+        <input type="text" class="form-control" asp-for="Path" />
+    </div>
+    <div class="form-group">
+        <label for="Tag">Tag</label>
+        <input type="text" class="form-control" asp-for="Tag" />
+    </div>
+    <div class="form-group">
+        <label for="Order">Order</label>
+        <input type="number" class="form-control" asp-for="Order" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/Admin/NavItem" class="btn btn-secondary">Cancel</a>
+</form>

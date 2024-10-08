@@ -1,0 +1,23 @@
+﻿@using NetSite.Models
+@model IDictionary<string, IEnumerable<NavItem>>
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Navigation Links</h1>
+
+@foreach (var kvp in Model)
+{
+    <h2>Collection: @kvp.Key</h2>    
+    <ul>
+        @foreach (var content in kvp.Value)
+        {
+            <li>@content.Name -
+                <a href="/Admin/NavItem/Edit/@content.Id">Edit</a> -
+                <a href="/Admin/NavItem/Delete/@content.Id">Delete</a>
+            </li>
+        }
+    </ul>
+}
+
+<a href="/Admin/NavItem/Create">Create new link</a>

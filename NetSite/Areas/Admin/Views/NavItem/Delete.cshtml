@@ -1,0 +1,24 @@
+﻿@using NetSite.Models
+@model NavItem
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Delete link</h1>
+
+<p>Are you sure you want to delete the following navigation link?</p>
+
+<div>
+    <strong>@Model.Name</strong> in <strong>@Model.Tag</strong> collection
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Path" />
+    <input type="hidden" asp-for="Name" />
+    <input type="hidden" asp-for="Tag" />
+    <input type="hidden" asp-for="Order" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="/Admin/NavItem" class="btn btn-secondary">Cancel</a>
+</form>
