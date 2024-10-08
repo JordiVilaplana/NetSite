@@ -13,5 +13,7 @@ public record NavItem
 
     public required string Name { get; init; }
 
-    public NavTag[] Tags { get; init; } = Array.Empty<NavTag>();
+    public required string Tag { get; init; }
+
+    public required int Order { get; init; }
 }

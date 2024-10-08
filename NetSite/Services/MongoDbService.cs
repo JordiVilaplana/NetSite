@@ -69,25 +69,15 @@ public class MongoDbService
                 {
                     Path = "/",
                     Name = "Home",
-                    Tags = [
-                        new NavTag
-                        {
-                            Name = "top",
-                            Order = 0
-                        }
-                    ]
+                    Tag = "top",
+                    Order = 0
                 },
                 new NavItem
                 {
                     Path = "/admin",
                     Name = "Admin",
-                    Tags = [
-                        new NavTag
-                        {
-                            Name = "top",
-                            Order = 1
-                        }
-                    ]
+                    Tag = "top",
+                    Order = 1
                 }
             };
             await niCollection.InsertManyAsync(initialNavItems);
