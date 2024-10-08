@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NetSite.Models;
 using NetSite.Services;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NetSite.Areas.Admin.Controllers;
 
@@ -27,7 +26,7 @@ public class StaticContentController : Controller
     [HttpGet]
     public ActionResult Create()
     {
-        return View("New");
+        return View("Create");
     }
 
     // POST: StaticContentController/Create
@@ -40,7 +39,7 @@ public class StaticContentController : Controller
             await _service.CreateAsync(data);
             return RedirectToAction(nameof(Index));
         }
-        return View("New");
+        return View("Create");
     }
 
     // GET: StaticContentController/Edit/5

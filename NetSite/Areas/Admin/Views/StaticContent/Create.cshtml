@@ -1,0 +1,24 @@
+﻿@using NetSite.Models
+@model StaticContent
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h1>New static page</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <input type="text" class="form-control" asp-for="Title" />
+    </div>
+    <div class="form-group">
+        <label for="Path">Path</label>
+        <input type="text" class="form-control" asp-for="Path" />
+    </div>
+    <div class="form-group">
+        <label for="Content">Content</label>
+        <textarea class="form-control" asp-for="Content"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
